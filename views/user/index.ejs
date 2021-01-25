@@ -1,0 +1,54 @@
+<div class="container mt-4">
+
+    <h4>Users</h4>
+    <div class="card shadow-sm mt-3">
+        <% if(users.length > 0){ %>
+        <div class="card-header">
+            <a href="/users/create" class="btn btn-primary btn-sm"> Add new users</a>
+        </div>
+        <% }  %>
+        <div class="card-body">
+            <% if(users.length > 0){ %>
+            <div class="col-md-6 mx-auto d-block">
+                <form action="/users" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" name="key" class="form-control" placeholder="Search only by name"
+                            autocomplete="off">
+                        <button class="btn btn-light" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <body>
+                    <% users.forEach(function(user){ %>
+                    <tr>
+                        <td><%= user.username %></td>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td>
+                            <a href="/users/<%= user.id %>/edit" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="/users/destroy/<%= user.id %>" class="btn btn-danger btn-sm">Hapus</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </body>
+            </table>
+            <% } else { %>
+            <div class="text-center mb-5">
+                <img src="assets/img/no_data.svg" width="20%" class="rounded mx-auto d-block mt-4 mb-4" alt="">
+                <h4>Opps! No Data</h4>
+                <a href="/users/create" class="btn btn-primary btn-sm"> Add new users</a>
+            </div>
+            <% }  %>
+        </div>
+    </div>
+</div>
